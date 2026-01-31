@@ -1,0 +1,394 @@
+:root {
+  /* Basis 1rem = 10px (Jika html { font-size: 62.5% }) */
+
+  /* --- COLORS --- */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Greys */
+  --color-grey-950: #08070b;
+  --color-grey-900: #14131b;
+  --color-grey-850: #18171f;
+  --color-grey-800: #24232c;
+  --color-grey-700: #54535b;
+  --color-grey-600: #817d92;
+  --color-grey-200: #e6e5ea;
+
+  /* Accents */
+  --color-green-200: #a4ffaf;
+  --color-yellow-300: #f8cd65;
+  --color-orange-400: #fb7c58;
+  --color-red-500: #f64a4a;
+
+  /* Gradient */
+  --gradient-1: linear-gradient(90deg, #14131b 0%, #08070b 100%);
+
+  /* --- TYPOGRAPHY (Shortcodes) --- */
+  /* JetBrains Mono Bold untuk semua preset */
+  --font-main: "JetBrains Mono", monospace;
+  --font-weight-bold: 700;
+
+  /* Text Presets: font-size | line-height | letter-spacing */
+  --text-preset-1: var(--font-weight-bold) 3.2rem/4.2rem var(--font-main);
+  --text-preset-2: var(--font-weight-bold) 2.4rem/3.2rem var(--font-main);
+  --text-preset-3: var(--font-weight-bold) 1.8rem/2.4rem var(--font-main);
+  --text-preset-4: var(--font-weight-bold) 1.6rem/2rem var(--font-main);
+
+  /* --- SPACING --- */
+  --spacing-100: 0.8rem;
+  --spacing-200: 1.6rem;
+  --spacing-300: 2.4rem;
+  --spacing-400: 3.2rem;
+  --spacing-700: 5.6rem;
+  --spacing-1000: 8rem;
+  --spacing-1300: 10.4rem;
+  --spacing-1600: 12.8rem;
+  --spacing-2000: 16rem;
+  --spacing-2200: 17.6rem;
+  --spacing-2300: 18.4rem;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./assets/fonts/JetBrainsMono-VariableFont_wght.ttf");
+  font-display: swap;
+}
+
+html {
+  font-size: 62.5%;
+  min-height: 100vh;
+}
+
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+body {
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-grey-950);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  justify-content: center;
+  align-items: center;
+  font: var(--text-preset-4);
+}
+
+.title {
+  font: var(--text-preset-4);
+  color: var(--color-grey-600);
+  text-align: center;
+}
+
+.password {
+  display: grid;
+  gap: var(--spacing-200);
+  width: 91%;
+  max-width: 54rem;
+}
+
+/* Password Text */
+
+.password-for-copied {
+  background-color: var(--color-grey-800);
+  color: var(--color-grey-700);
+  font: var(--text-preset-2);
+  display: flex;
+  padding: var(--spacing-200);
+  display: flex;
+  justify-content: space-between;
+}
+
+.password-copy {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.password-copy.copied::after {
+  position: absolute;
+  inset-inline-end: calc(100% + var(--spacing-100));
+  transform: translateY(-100%);
+  content: "COPIED";
+  color: var(--color-green-200);
+  font: var(--text-preset-4);
+  z-index: 10;
+}
+
+.password-copy:hover {
+  filter: brightness(5);
+}
+
+/* Password Setting */
+
+.password-setting form {
+  background-color: var(--color-grey-800);
+  padding: var(--spacing-200);
+  color: var(--color-white);
+  display: grid;
+  gap: var(--spacing-400);
+}
+
+.password-range-container {
+  display: grid;
+  gap: calc(var(--spacing-100) + 1rem);
+}
+
+.password-range-label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.password-range-length {
+  color: var(--color-green-200);
+}
+
+.password-range {
+  appearance: none;
+  background-color: var(--color-grey-850);
+  height: 0.8rem;
+  width: 100%;
+}
+
+/* Password Range */
+
+.password-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 2.8rem;
+  aspect-ratio: 1/1;
+  background-color: var(--color-white);
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.password-range::-webkit-slider-thumb:hover {
+  border: 2px solid var(--color-green-200);
+  background-color: var(--color-grey-850);
+}
+
+.password-range::-moz-range-thumb {
+  -webkit-appearance: none;
+  width: 2.8rem;
+  aspect-ratio: 1/1;
+  background-color: var(--color-white);
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.password-range::-moz-range-thumb:hover {
+  border: 2px solid var(--color-green-200);
+  background-color: var(--color-grey-850);
+}
+
+/* Password Settings */
+
+.password-checkboxes-container {
+  display: grid;
+  gap: var(--spacing-100);
+}
+
+.password-checkbox-container {
+  display: flex;
+  gap: var(--spacing-200);
+  align-items: center;
+}
+
+.password-text.white {
+  color: var(--color-grey-200);
+}
+
+.password-checkbox {
+  appearance: none;
+  width: 2rem;
+  aspect-ratio: 1/1;
+  border: 1px solid var(--color-grey-200);
+  cursor: pointer;
+}
+
+.password-checkbox:hover {
+  border-color: var(--color-green-200);
+}
+
+.password-checkbox:checked {
+  background-color: var(--color-green-200);
+  border-color: var(--color-green-200);
+  position: relative;
+}
+
+.password-checkbox:checked:after {
+  content: url("./assets/images/icon-check.svg");
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.password-level {
+  background-color: var(--color-grey-850);
+  padding: 1.4rem var(--spacing-200);
+  display: flex;
+  justify-content: space-between;
+}
+
+.password-level-text {
+  color: var(--color-grey-600);
+}
+
+.level-container {
+  display: flex;
+  gap: var(--spacing-200);
+}
+
+.level-bar {
+  display: flex;
+  gap: var(--spacing-100);
+}
+
+.level-container[data-level="1"] .level-1, 
+.level-container[data-level="2"] .level-1, 
+.level-container[data-level="2"] .level-2, 
+.level-container[data-level="3"] .level-1, 
+.level-container[data-level="3"] .level-2, 
+.level-container[data-level="3"] .level-3, 
+.level-container[data-level="4"] .level-1, 
+.level-container[data-level="4"] .level-2, 
+.level-container[data-level="4"] .level-3, 
+.level-container[data-level="4"] .level-4 
+{
+  background-color: var(--color-yellow-300);
+  border: none;
+}
+
+.level {
+  height: 100%;
+  width: 1rem;
+  border: 2px solid var(--color-grey-200);
+}
+
+.btn {
+  border: none;
+  background-color: var(--color-green-200);
+  display: flex;
+  padding: var(--spacing-200);
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-200);
+  margin-block-start: -1.6rem;
+  cursor: pointer;
+}
+
+.btn:hover img {
+  filter: invert(88%) sepia(4%) saturate(2720%) hue-rotate(74deg)
+    brightness(91%) contrast(140%);
+}
+
+.btn:hover {
+  background-color: transparent;
+  border: 2px solid var(--color-green-200);
+  color: var(--color-green-200);
+}
+
+
+
+@media (min-width: 48rem) {
+  body {
+    gap: var(--spacing-400);
+    font: var(--text-preset-3);
+  }
+
+  .title {
+    font: var(--text-preset-2);
+  }
+
+  .password {
+    gap: var(--spacing-400);
+  }
+
+  .password-for-copied {
+    padding: var(--spacing-200) var(--spacing-400);
+    font: var(--text-preset-1);
+  }
+
+  .password-range-container {
+    gap: var(--spacing-300);
+  }
+
+  .btn {
+    margin-block-start: 0;
+    padding: var(--spacing-300);
+  }
+
+  .password-level {
+    padding: var(--spacing-300) var(--spacing-400);
+  }
+
+  .password-checkbox-container {
+    gap: var(--spacing-300);
+  }
+
+  .password-copy.copied::after {
+    inset-inline-end: calc(100% + var(--spacing-200));
+    font: var(--text-preset-3);
+  }
+}

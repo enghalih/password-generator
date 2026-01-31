@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="./node_modules/zxcvbn/dist/zxcvbn.js"></script>
+    <script src="script.js" defer type="module"></script>
+
+    <title>Frontend Mentor | Password generator app</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="title">Password Generator</h1>
+    </header>
+
+    <main class="password">
+      <section class="password-for-copied">
+        <p class="password-text" id="password-text">P4$5W0rD!</p>
+        <button class="password-copy" type="button" aria-label="copy password" id="copy">
+          <img src="./assets/images/icon-copy.svg" alt="" />
+        </button>
+      </section>
+
+      <section class="password-setting">
+        <form action="#" id="setting">
+          <div class="password-range-container">
+            <label for="length" class="password-range-label">
+              Character Length
+              <p class="password-range-length" id="length-value">0</p>
+            </label>
+            <input type="range" name="length" value="10" id="length" min="4" max="20" class="password-range" />
+          </div>
+          <div class="password-checkboxes-container">
+            <label class="password-checkbox-container">
+              <input type="checkbox" name="uppercase" class="password-checkbox" />
+              Include Uppercase Letters
+            </label>
+            <label class="password-checkbox-container">
+              <input type="checkbox" name="lowercase" class="password-checkbox" />
+              Include Lowercase Letters
+            </label>
+            <label class="password-checkbox-container">
+              <input type="checkbox" name="numbers" class="password-checkbox" />
+              Include Numbers
+            </label>
+            <label class="password-checkbox-container">
+              <input type="checkbox" name="symbols" class="password-checkbox" />
+              Include Symbols
+            </label>
+          </div>
+          <section class="password-level">
+            <p class="password-level-text">STRENGTH</p>
+            <div class="level-container" id="level" data-level="0">
+              <p class="level-text" id="level-text">MEDIUM</p>
+              <div class="level-bar">
+                <div class="level-1 level"></div>
+                <div class="level-2 level"></div>
+                <div class="level-3 level"></div>
+                <div class="level-4 level"></div>
+              </div>
+            </div>
+          </section>
+          <button type="submit" class="btn">
+            GENERATE <img src="./assets/images/icon-arrow-right.svg" alt="" />
+          </button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
