@@ -4,6 +4,7 @@
 *.xd
 
 # Dependencies
+/node_modules
 /.pnp
 .pnp.js
 yarn.debug.log*

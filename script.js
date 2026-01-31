@@ -1,4 +1,4 @@
-import { customAlphabet } from "./node_modules/nanoid/index.browser.js";
+import { customAlphabet } from "https://cdn.jsdelivr.net/npm/nanoid/nanoid.js";
 
 const DEBUG = false;
 
