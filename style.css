@@ -304,16 +304,10 @@ body {
   gap: var(--spacing-100);
 }
 
-.level-container[data-level="1"] .level-1, 
-.level-container[data-level="2"] .level-1, 
-.level-container[data-level="2"] .level-2, 
-.level-container[data-level="3"] .level-1, 
-.level-container[data-level="3"] .level-2, 
-.level-container[data-level="3"] .level-3, 
-.level-container[data-level="4"] .level-1, 
-.level-container[data-level="4"] .level-2, 
-.level-container[data-level="4"] .level-3, 
-.level-container[data-level="4"] .level-4 
+[data-level="1"] .level-1,
+[data-level="2"] :is(.level-1, .level-2),
+[data-level="3"] :is(.level-1, .level-2, .level-3),
+[data-level="4"] :is(.level-1, .level-2, .level-3, .level-4)
 {
   background-color: var(--color-yellow-300);
   border: none;
