@@ -104,20 +104,13 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 /* 9. Improve line wrapping */
 p {
   text-wrap: pretty;
   overflow-wrap: anywhere;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
 }
 
 body {
@@ -219,10 +212,12 @@ body {
   background-color: var(--color-white);
   border-radius: 100%;
   cursor: pointer;
+  transition: background-color 300ms ease, border 300ms ease;
+  border: 2px solid transparent;
 }
 
 .password-range::-webkit-slider-thumb:hover {
-  border: 2px solid var(--color-green-200);
+  border-color: var(--color-green-200);
   background-color: var(--color-grey-850);
 }
 
@@ -232,11 +227,13 @@ body {
   aspect-ratio: 1/1;
   background-color: var(--color-white);
   border-radius: 100%;
+  border: 2px solid transparent;
+  transition: background-color 300ms ease, border 300ms ease;
   cursor: pointer;
 }
 
 .password-range::-moz-range-thumb:hover {
-  border: 2px solid var(--color-green-200);
+  border-color: var(--color-green-200);
   background-color: var(--color-grey-850);
 }
 
@@ -287,6 +284,8 @@ body {
   background-color: var(--color-grey-850);
   padding: 1.4rem var(--spacing-200);
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-100);
   justify-content: space-between;
 }
 
@@ -307,8 +306,7 @@ body {
 [data-level="1"] .level-1,
 [data-level="2"] :is(.level-1, .level-2),
 [data-level="3"] :is(.level-1, .level-2, .level-3),
-[data-level="4"] :is(.level-1, .level-2, .level-3, .level-4)
-{
+[data-level="4"] :is(.level-1, .level-2, .level-3, .level-4) {
   background-color: var(--color-yellow-300);
   border: none;
 }
@@ -320,7 +318,6 @@ body {
 }
 
 .btn {
-  border: none;
   background-color: var(--color-green-200);
   display: flex;
   padding: var(--spacing-200);
@@ -330,6 +327,8 @@ body {
   gap: var(--spacing-200);
   margin-block-start: -1.6rem;
   cursor: pointer;
+  border: 2px solid transparent;
+  transition: background-color 300ms ease;
 }
 
 .btn:hover img {
@@ -339,11 +338,9 @@ body {
 
 .btn:hover {
   background-color: transparent;
-  border: 2px solid var(--color-green-200);
+  border-color: var(--color-green-200);
   color: var(--color-green-200);
 }
-
-
 
 @media (min-width: 48rem) {
   body {
@@ -384,5 +381,14 @@ body {
   .password-copy.copied::after {
     inset-inline-end: calc(100% + var(--spacing-200));
     font: var(--text-preset-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .password-checkbox {
+    transition: none;
+  }
+  .btn {
+    transition: none;
   }
 }

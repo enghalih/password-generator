@@ -12,13 +12,16 @@ const copyEl = document.getElementById("copy");
 const form = document.getElementById("setting");
 const lengthEl = document.getElementById("length");
 const lengthValueEl = document.getElementById("length-value");
-const levelEl = document.getElementById('level');
-const levelTextEl = document.getElementById('level-text');
+const levelEl = document.getElementById("level");
+const levelTextEl = document.getElementById("level-text");
 
 if (lengthValueEl) {
-  lengthValueEl.innerHTML = lengthEl.value;
+  lengthValueEl.textContent = lengthEl.value;
   lengthEl?.addEventListener("input", (e) => {
-    lengthValueEl.innerHTML = e.target.value;
+    if (!(e.target instanceof HTMLInputElement)) return;
+
+    lengthValueEl.textContent = e.target.value;
+    e.target.setAttribute("aria-valuenow", e.target.value);
   });
 }
 
@@ -35,39 +38,39 @@ form?.addEventListener("submit", (e) => {
   if (datas.symbols) setting += symbols;
   if (setting === "") setting = lowercase;
 
-  const password = (customAlphabet(setting, parseInt(lengthEl.value)))();
+  const password = customAlphabet(setting, parseInt(lengthEl.value))();
 
   if (!lengthValueEl || !passwordEl || !levelEl || !levelTextEl) return;
 
-  passwordEl.innerHTML = password;
+  passwordEl.textContent = password;
   passwordEl.classList.add("white");
 
   const result = zxcvbn(password);
   levelEl.dataset.level = result.score;
-  
+
   switch (result.score) {
     case 1:
-      levelTextEl.innerHTML = 'WEAK';
+      levelTextEl.textContent = "WEAK";
       break;
     case 2:
-      levelTextEl.innerHTML = 'MEDIUM';
+      levelTextEl.textContent = "MEDIUM";
       break;
     case 3:
-      levelTextEl.innerHTML = 'STRONG';
+      levelTextEl.textContent = "STRONG";
       break;
     case 4:
-      levelTextEl.innerHTML = 'STRONGEST';
+      levelTextEl.textContent = "STRONGEST";
       break;
-  
+
     default:
       break;
   }
 });
 
 copyEl?.addEventListener("click", async (e) => {
-  const textToCopy = passwordEl.innerHTML;
+  if (!passwordEl.innerHTML || passwordEl.innerHTML === "") return;
 
-  if (!textToCopy || textToCopy === "") return;
+  const textToCopy = passwordEl.textContent;
 
   try {
     await navigator.clipboard.writeText(textToCopy);
